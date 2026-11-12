@@ -11,13 +11,17 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdoptionRouteImport } from './routes/adoption'
+import { Route as AiAssistantRouteImport } from './routes/ai-assistant'
+import { Route as CommunityRouteImport } from './routes/community'
 import { Route as DailyCareRouteImport } from './routes/daily-care'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as ExpensesRouteImport } from './routes/expenses'
 import { Route as HealthRouteImport } from './routes/health'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as LostFoundRouteImport } from './routes/lost-found'
 import { Route as PetsRouteImport } from './routes/pets'
 import { Route as PlansRouteImport } from './routes/plans'
+import { Route as SettingsRouteImport } from './routes/settings'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -29,6 +33,16 @@ const AdoptionRoute = AdoptionRouteImport.update({
   path: '/adoption',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AiAssistantRoute = AiAssistantRouteImport.update({
+  id: '/ai-assistant',
+  path: '/ai-assistant',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommunityRoute = CommunityRouteImport.update({
+  id: '/community',
+  path: '/community',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DailyCareRoute = DailyCareRouteImport.update({
   id: '/daily-care',
   path: '/daily-care',
@@ -37,6 +51,11 @@ const DailyCareRoute = DailyCareRouteImport.update({
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExpensesRoute = ExpensesRouteImport.update({
+  id: '/expenses',
+  path: '/expenses',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HealthRoute = HealthRouteImport.update({
@@ -64,87 +83,120 @@ const PlansRoute = PlansRouteImport.update({
   path: '/plans',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/adoption': typeof AdoptionRoute
+  '/ai-assistant': typeof AiAssistantRoute
+  '/community': typeof CommunityRoute
   '/daily-care': typeof DailyCareRoute
   '/dashboard': typeof DashboardRoute
+  '/expenses': typeof ExpensesRoute
   '/health': typeof HealthRoute
   '/login': typeof LoginRoute
   '/lost-found': typeof LostFoundRoute
   '/pets': typeof PetsRoute
   '/plans': typeof PlansRoute
+  '/settings': typeof SettingsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/adoption': typeof AdoptionRoute
+  '/ai-assistant': typeof AiAssistantRoute
+  '/community': typeof CommunityRoute
   '/daily-care': typeof DailyCareRoute
   '/dashboard': typeof DashboardRoute
+  '/expenses': typeof ExpensesRoute
   '/health': typeof HealthRoute
   '/login': typeof LoginRoute
   '/lost-found': typeof LostFoundRoute
   '/pets': typeof PetsRoute
   '/plans': typeof PlansRoute
+  '/settings': typeof SettingsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/adoption': typeof AdoptionRoute
+  '/ai-assistant': typeof AiAssistantRoute
+  '/community': typeof CommunityRoute
   '/daily-care': typeof DailyCareRoute
   '/dashboard': typeof DashboardRoute
+  '/expenses': typeof ExpensesRoute
   '/health': typeof HealthRoute
   '/login': typeof LoginRoute
   '/lost-found': typeof LostFoundRoute
   '/pets': typeof PetsRoute
   '/plans': typeof PlansRoute
+  '/settings': typeof SettingsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/adoption'
+    | '/ai-assistant'
+    | '/community'
     | '/daily-care'
     | '/dashboard'
+    | '/expenses'
     | '/health'
     | '/login'
     | '/lost-found'
     | '/pets'
     | '/plans'
+    | '/settings'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/adoption'
+    | '/ai-assistant'
+    | '/community'
     | '/daily-care'
     | '/dashboard'
+    | '/expenses'
     | '/health'
     | '/login'
     | '/lost-found'
     | '/pets'
     | '/plans'
+    | '/settings'
   id:
     | '__root__'
     | '/'
     | '/adoption'
+    | '/ai-assistant'
+    | '/community'
     | '/daily-care'
     | '/dashboard'
+    | '/expenses'
     | '/health'
     | '/login'
     | '/lost-found'
     | '/pets'
     | '/plans'
+    | '/settings'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdoptionRoute: typeof AdoptionRoute
+  AiAssistantRoute: typeof AiAssistantRoute
+  CommunityRoute: typeof CommunityRoute
   DailyCareRoute: typeof DailyCareRoute
   DashboardRoute: typeof DashboardRoute
+  ExpensesRoute: typeof ExpensesRoute
   HealthRoute: typeof HealthRoute
   LoginRoute: typeof LoginRoute
   LostFoundRoute: typeof LostFoundRoute
   PetsRoute: typeof PetsRoute
   PlansRoute: typeof PlansRoute
+  SettingsRoute: typeof SettingsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -163,6 +215,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdoptionRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ai-assistant': {
+      id: '/ai-assistant'
+      path: '/ai-assistant'
+      fullPath: '/ai-assistant'
+      preLoaderRoute: typeof AiAssistantRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/community': {
+      id: '/community'
+      path: '/community'
+      fullPath: '/community'
+      preLoaderRoute: typeof CommunityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/daily-care': {
       id: '/daily-care'
       path: '/daily-care'
@@ -175,6 +241,13 @@ declare module '@tanstack/react-router' {
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/expenses': {
+      id: '/expenses'
+      path: '/expenses'
+      fullPath: '/expenses'
+      preLoaderRoute: typeof ExpensesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/health': {
@@ -212,19 +285,30 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlansRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdoptionRoute: AdoptionRoute,
+  AiAssistantRoute: AiAssistantRoute,
+  CommunityRoute: CommunityRoute,
   DailyCareRoute: DailyCareRoute,
   DashboardRoute: DashboardRoute,
+  ExpensesRoute: ExpensesRoute,
   HealthRoute: HealthRoute,
   LoginRoute: LoginRoute,
   LostFoundRoute: LostFoundRoute,
   PetsRoute: PetsRoute,
   PlansRoute: PlansRoute,
+  SettingsRoute: SettingsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
