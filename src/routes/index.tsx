@@ -49,10 +49,7 @@ function Home() {
 
   return (
     <main className="min-h-screen bg-background px-4 pb-16">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between py-5">
-        <Link to="/" className="flex items-center gap-2 font-display text-2xl text-foreground"><PawPrint className="h-6 w-6 text-primary" /> PawSync</Link>
-        <Link to="/plans" className="rounded-full bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground">Subscription Plans</Link>
-      </nav>
+      <div className="h-4" />
 
       <div className="mx-auto mb-4 max-w-6xl rounded-full bg-accent px-4 py-2 text-center text-sm font-semibold text-accent-foreground">
         🎉 Festive offer: Get 2 months FREE on yearly plans!
