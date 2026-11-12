@@ -10,8 +10,13 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as SectionRouteImport } from './routes/$section'
+import { Route as AdoptionRouteImport } from './routes/adoption'
+import { Route as DailyCareRouteImport } from './routes/daily-care'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as HealthRouteImport } from './routes/health'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as LostFoundRouteImport } from './routes/lost-found'
+import { Route as PetsRouteImport } from './routes/pets'
 import { Route as PlansRouteImport } from './routes/plans'
 
 const IndexRoute = IndexRouteImport.update({
@@ -19,14 +24,39 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SectionRoute = SectionRouteImport.update({
-  id: '/$section',
-  path: '/$section',
+const AdoptionRoute = AdoptionRouteImport.update({
+  id: '/adoption',
+  path: '/adoption',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DailyCareRoute = DailyCareRouteImport.update({
+  id: '/daily-care',
+  path: '/daily-care',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HealthRoute = HealthRouteImport.update({
+  id: '/health',
+  path: '/health',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LostFoundRoute = LostFoundRouteImport.update({
+  id: '/lost-found',
+  path: '/lost-found',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PetsRoute = PetsRouteImport.update({
+  id: '/pets',
+  path: '/pets',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PlansRoute = PlansRouteImport.update({
@@ -37,35 +67,83 @@ const PlansRoute = PlansRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/$section': typeof SectionRoute
+  '/adoption': typeof AdoptionRoute
+  '/daily-care': typeof DailyCareRoute
+  '/dashboard': typeof DashboardRoute
+  '/health': typeof HealthRoute
   '/login': typeof LoginRoute
+  '/lost-found': typeof LostFoundRoute
+  '/pets': typeof PetsRoute
   '/plans': typeof PlansRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/$section': typeof SectionRoute
+  '/adoption': typeof AdoptionRoute
+  '/daily-care': typeof DailyCareRoute
+  '/dashboard': typeof DashboardRoute
+  '/health': typeof HealthRoute
   '/login': typeof LoginRoute
+  '/lost-found': typeof LostFoundRoute
+  '/pets': typeof PetsRoute
   '/plans': typeof PlansRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/$section': typeof SectionRoute
+  '/adoption': typeof AdoptionRoute
+  '/daily-care': typeof DailyCareRoute
+  '/dashboard': typeof DashboardRoute
+  '/health': typeof HealthRoute
   '/login': typeof LoginRoute
+  '/lost-found': typeof LostFoundRoute
+  '/pets': typeof PetsRoute
   '/plans': typeof PlansRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/$section' | '/login' | '/plans'
+  fullPaths:
+    | '/'
+    | '/adoption'
+    | '/daily-care'
+    | '/dashboard'
+    | '/health'
+    | '/login'
+    | '/lost-found'
+    | '/pets'
+    | '/plans'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$section' | '/login' | '/plans'
-  id: '__root__' | '/' | '/$section' | '/login' | '/plans'
+  to:
+    | '/'
+    | '/adoption'
+    | '/daily-care'
+    | '/dashboard'
+    | '/health'
+    | '/login'
+    | '/lost-found'
+    | '/pets'
+    | '/plans'
+  id:
+    | '__root__'
+    | '/'
+    | '/adoption'
+    | '/daily-care'
+    | '/dashboard'
+    | '/health'
+    | '/login'
+    | '/lost-found'
+    | '/pets'
+    | '/plans'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  SectionRoute: typeof SectionRoute
+  AdoptionRoute: typeof AdoptionRoute
+  DailyCareRoute: typeof DailyCareRoute
+  DashboardRoute: typeof DashboardRoute
+  HealthRoute: typeof HealthRoute
   LoginRoute: typeof LoginRoute
+  LostFoundRoute: typeof LostFoundRoute
+  PetsRoute: typeof PetsRoute
   PlansRoute: typeof PlansRoute
 }
 
@@ -78,11 +156,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/$section': {
-      id: '/$section'
-      path: '/$section'
-      fullPath: '/$section'
-      preLoaderRoute: typeof SectionRouteImport
+    '/adoption': {
+      id: '/adoption'
+      path: '/adoption'
+      fullPath: '/adoption'
+      preLoaderRoute: typeof AdoptionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/daily-care': {
+      id: '/daily-care'
+      path: '/daily-care'
+      fullPath: '/daily-care'
+      preLoaderRoute: typeof DailyCareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/health': {
+      id: '/health'
+      path: '/health'
+      fullPath: '/health'
+      preLoaderRoute: typeof HealthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -90,6 +189,20 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lost-found': {
+      id: '/lost-found'
+      path: '/lost-found'
+      fullPath: '/lost-found'
+      preLoaderRoute: typeof LostFoundRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pets': {
+      id: '/pets'
+      path: '/pets'
+      fullPath: '/pets'
+      preLoaderRoute: typeof PetsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/plans': {
@@ -104,8 +217,13 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  SectionRoute: SectionRoute,
+  AdoptionRoute: AdoptionRoute,
+  DailyCareRoute: DailyCareRoute,
+  DashboardRoute: DashboardRoute,
+  HealthRoute: HealthRoute,
   LoginRoute: LoginRoute,
+  LostFoundRoute: LostFoundRoute,
+  PetsRoute: PetsRoute,
   PlansRoute: PlansRoute,
 }
 export const routeTree = rootRouteImport
