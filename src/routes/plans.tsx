@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Check, PawPrint } from "lucide-react";
-import { SiteFooter } from "@/components/SiteFooter";
 
 export const Route = createFileRoute("/plans")({
   head: () => ({
@@ -78,7 +77,6 @@ function Plans() {
           </article>
         ))}
       </section>
-      <SiteFooter />
     </main>
   );
 }

@@ -20,8 +20,10 @@ import {
   ChevronDown,
   LogOut,
   MapPinned,
+  PencilLine,
   X,
 } from "lucide-react";
+import { SiteFooter } from "@/components/SiteFooter";
 
 const items = [
   { title: "Home / Dashboard", to: "/dashboard", icon: House },
@@ -68,7 +70,36 @@ function PawMark() {
 }
 
 function LocationModal({ onClose }: { onClose: () => void }) {
+  const [mode, setMode] = useState<"current" | "manual">("manual");
   const [city, setCity] = useState("");
+  const [status, setStatus] = useState("");
+
+  const detect = () => {
+    setMode("current");
+    if (!("geolocation" in navigator)) {
+      setMode("manual");
+      setStatus("This browser can't share a location. Please type your city instead.");
+      return;
+    }
+    setStatus("Asking your browser for location permission…");
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const coords = `${pos.coords.latitude.toFixed(3)}, ${pos.coords.longitude.toFixed(3)}`;
+        setCity(coords);
+        setStatus(`Detected ${coords}. Confirm it, or type your city below.`);
+      },
+      (err) => {
+        setMode("manual");
+        setStatus(
+          err.code === err.PERMISSION_DENIED
+            ? "Location permission was declined. You can type your city instead."
+            : "We couldn't read your location right now. Please type your city instead.",
+        );
+      },
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 },
+    );
+  };
+
   return (
     <div className="modal-overlay" role="dialog" aria-modal="true" aria-label="Set your location">
       <div className="modal">
@@ -84,23 +115,38 @@ function LocationModal({ onClose }: { onClose: () => void }) {
           </p>
           <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", marginBottom: "1rem" }}>
             <button
-              className="btn btn-primary"
-              onClick={() => {
-                setCity("Mumbai");
-              }}
+              type="button"
+              className={`btn ${mode === "current" ? "btn-primary" : "btn-secondary"}`}
+              onClick={detect}
             >
               <MapPinned size={18} />
               Use my current location
             </button>
+            <button
+              type="button"
+              className={`btn ${mode === "manual" ? "btn-primary" : "btn-secondary"}`}
+              onClick={() => {
+                setMode("manual");
+                setStatus("Type your city, area or PIN code.");
+              }}
+            >
+              <PencilLine size={18} />
+              Enter location manually
+            </button>
           </div>
           <div className="form-group" style={{ marginBottom: 0 }}>
-            <label className="form-label">Or enter city manually</label>
+            <label className="form-label">
+              {mode === "current" ? "Detected location (confirm or change)" : "City, area or PIN code"}
+            </label>
             <input
               className="form-input"
               placeholder="Mumbai, Delhi, Bangalore"
               value={city}
               onChange={(e) => setCity(e.target.value)}
             />
+            {status && (
+              <p style={{ marginTop: "0.5rem", fontSize: "0.85rem", color: "var(--text-secondary)" }}>{status}</p>
+            )}
           </div>
         </div>
         <div className="modal-footer">
@@ -112,7 +158,7 @@ function LocationModal({ onClose }: { onClose: () => void }) {
             className="btn btn-primary"
             onClick={() => {
               if (typeof window !== "undefined" && city.trim()) {
-                window.localStorage.setItem("pawsync-city", city.trim());
+                window.localStorage.setItem("pawsync-location", city.trim());
               }
               onClose();
             }}
@@ -247,6 +293,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         </header>
 
         <main className="page-content">{children}</main>
+        <SiteFooter />
       </div>
 
       {showLocation && <LocationModal onClose={closeLocation} />}

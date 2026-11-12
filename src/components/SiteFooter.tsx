@@ -3,7 +3,7 @@ import { Mail, Phone, Clock, PawPrint } from "lucide-react";
 
 export function SiteFooter() {
   return (
-    <footer className="mt-20 -mx-4 -mb-16 bg-foreground px-6 py-12 text-background">
+    <footer className="mt-auto bg-foreground px-6 py-12 text-background">
       <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-3">
         <div>
           <div className="flex items-center gap-2 font-display text-2xl"><PawPrint className="h-6 w-6" /> PawSync</div>

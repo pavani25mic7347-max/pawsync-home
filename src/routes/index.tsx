@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight, PawPrint, Bot, Syringe, Wallet, Users, HeartPulse, Gift, Star } from "lucide-react";
-import { SiteFooter } from "@/components/SiteFooter";
 import family from "@/assets/slide-family.jpg";
 import vet from "@/assets/slide-vet.jpg";
 import shop from "@/assets/slide-shop.jpg";
@@ -21,10 +20,10 @@ export const Route = createFileRoute("/")({
 });
 
 const slides = [
-  { img: family, tag: "Family Plan", title: "One home. Many paws. Zero chaos.", text: "Up to 5 pets & 4 family members — just ₹199/month.", cta: "See plans" },
-  { img: vet, tag: "Never miss a shot", title: "Vaccines on time, every time.", text: "Smart reminders for vaccines, medicines & vet visits.", cta: "Get started" },
-  { img: shop, tag: "Up to 30% OFF", title: "Treats for them, savings for you.", text: "Exclusive partner discounts on food, toys & grooming.", cta: "Unlock offers" },
-];
+  { img: family, tag: "Family Plan", title: "One home. Many paws. Zero chaos.", text: "Up to 5 pets & 4 family members — just ₹199/month.", cta: "See plans", to: "/plans" },
+  { img: vet, tag: "Never miss a shot", title: "Vaccines on time, every time.", text: "Smart reminders for vaccines, medicines & vet visits.", cta: "Get started", to: "/health" },
+  { img: shop, tag: "Up to 30% OFF", title: "Treats for them, savings for you.", text: "Exclusive partner discounts on food, toys & grooming.", cta: "Unlock offers", to: "/shop" },
+] as const;
 
 const features = [
   { icon: Bot, title: "AI Pet Assistant", text: "Ask anything, anytime — from diet to behaviour." },
@@ -65,7 +64,7 @@ function Home() {
                 <span className="w-fit rounded-full bg-accent px-3 py-1 text-xs font-bold text-accent-foreground">{s.tag}</span>
                 <h2 className="font-display text-3xl md:text-5xl">{s.title}</h2>
                 <p className="opacity-90">{s.text}</p>
-                <Link to="/plans" className="mt-2 w-fit rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground">{s.cta}</Link>
+                <Link to={s.to} className="mt-2 w-fit rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground">{s.cta}</Link>
               </div>
             </div>
           ))}
@@ -117,7 +116,6 @@ function Home() {
         </div>
       </section>
 
-      <SiteFooter />
     </main>
   );
 }

@@ -9,7 +9,8 @@ export const Route = createFileRoute("/pets")({
 type Pet = { name:string; species:string; breed:string; age:string; gender:string; weight:string; photo:string };
 function Pets() {
  const [pets,setPets]=useState<Pet[]>([]), [open,setOpen]=useState(false), [editing,setEditing]=useState<number|null>(null), [form,setForm]=useState<Pet>({name:"",species:"Dog",breed:"",age:"",gender:"",weight:"",photo:""});
- const start=(index:number|null=null)=>{setEditing(index);setForm(index===null?{name:"",species:"Dog",breed:"",age:"",gender:"",weight:"",photo:""}:pets[index]);setOpen(true)};
+ const blank: Pet = {name:"",species:"Dog",breed:"",age:"",gender:"",weight:"",photo:""};
+ const start=(index:number|null=null)=>{setEditing(index);setForm(index===null?blank:(pets[index] ?? blank));setOpen(true)};
  const save=(e:React.FormEvent)=>{e.preventDefault();if(editing===null)setPets([...pets,form]);else setPets(pets.map((p,i)=>i===editing?form:p));setOpen(false)};
  const field=(label:string,key:keyof Pet,options?:string[])=><div className="form-group" key={key}><label className="form-label">{label}</label>{options?<select className="form-select" value={form[key]} onChange={e=>setForm({...form,[key]:e.target.value})}><option value="">Select {label.toLowerCase()}</option>{options.map(o=><option key={o}>{o}</option>)}</select>:<input className="form-input" type={key==="age"||key==="weight"?"number":"text"} value={form[key]} onChange={e=>setForm({...form,[key]:e.target.value})} required={key==="name"}/>}</div>;
  return <div className="page"><div className="page-header"><div style={{display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap",gap:"1rem"}}><div><h1>My Pets</h1><p>Manage your pet profiles</p></div><button className="btn btn-primary" onClick={()=>start()}><Plus size={20}/>Add New Pet</button></div></div>

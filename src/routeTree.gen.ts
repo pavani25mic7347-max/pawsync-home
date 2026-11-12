@@ -20,8 +20,11 @@ import { Route as HealthRouteImport } from './routes/health'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as LostFoundRouteImport } from './routes/lost-found'
 import { Route as PetsRouteImport } from './routes/pets'
+import { Route as PlacesRouteImport } from './routes/places'
 import { Route as PlansRouteImport } from './routes/plans'
+import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as ShopRouteImport } from './routes/shop'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -78,14 +81,29 @@ const PetsRoute = PetsRouteImport.update({
   path: '/pets',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PlacesRoute = PlacesRouteImport.update({
+  id: '/places',
+  path: '/places',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PlansRoute = PlansRouteImport.update({
   id: '/plans',
   path: '/plans',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SettingsRoute = SettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShopRoute = ShopRouteImport.update({
+  id: '/shop',
+  path: '/shop',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -101,8 +119,11 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/lost-found': typeof LostFoundRoute
   '/pets': typeof PetsRoute
+  '/places': typeof PlacesRoute
   '/plans': typeof PlansRoute
+  '/services': typeof ServicesRoute
   '/settings': typeof SettingsRoute
+  '/shop': typeof ShopRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -116,8 +137,11 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/lost-found': typeof LostFoundRoute
   '/pets': typeof PetsRoute
+  '/places': typeof PlacesRoute
   '/plans': typeof PlansRoute
+  '/services': typeof ServicesRoute
   '/settings': typeof SettingsRoute
+  '/shop': typeof ShopRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -132,8 +156,11 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/lost-found': typeof LostFoundRoute
   '/pets': typeof PetsRoute
+  '/places': typeof PlacesRoute
   '/plans': typeof PlansRoute
+  '/services': typeof ServicesRoute
   '/settings': typeof SettingsRoute
+  '/shop': typeof ShopRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -149,8 +176,11 @@ export interface FileRouteTypes {
     | '/login'
     | '/lost-found'
     | '/pets'
+    | '/places'
     | '/plans'
+    | '/services'
     | '/settings'
+    | '/shop'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -164,8 +194,11 @@ export interface FileRouteTypes {
     | '/login'
     | '/lost-found'
     | '/pets'
+    | '/places'
     | '/plans'
+    | '/services'
     | '/settings'
+    | '/shop'
   id:
     | '__root__'
     | '/'
@@ -179,8 +212,11 @@ export interface FileRouteTypes {
     | '/login'
     | '/lost-found'
     | '/pets'
+    | '/places'
     | '/plans'
+    | '/services'
     | '/settings'
+    | '/shop'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -195,8 +231,11 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   LostFoundRoute: typeof LostFoundRoute
   PetsRoute: typeof PetsRoute
+  PlacesRoute: typeof PlacesRoute
   PlansRoute: typeof PlansRoute
+  ServicesRoute: typeof ServicesRoute
   SettingsRoute: typeof SettingsRoute
+  ShopRoute: typeof ShopRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -278,6 +317,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PetsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/places': {
+      id: '/places'
+      path: '/places'
+      fullPath: '/places'
+      preLoaderRoute: typeof PlacesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/plans': {
       id: '/plans'
       path: '/plans'
@@ -285,11 +331,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlansRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/settings': {
       id: '/settings'
       path: '/settings'
       fullPath: '/settings'
       preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shop': {
+      id: '/shop'
+      path: '/shop'
+      fullPath: '/shop'
+      preLoaderRoute: typeof ShopRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -307,8 +367,11 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   LostFoundRoute: LostFoundRoute,
   PetsRoute: PetsRoute,
+  PlacesRoute: PlacesRoute,
   PlansRoute: PlansRoute,
+  ServicesRoute: ServicesRoute,
   SettingsRoute: SettingsRoute,
+  ShopRoute: ShopRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
