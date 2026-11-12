@@ -1,6 +1,7 @@
+import { Plans } from "./plans";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { ChevronLeft, ChevronRight, PawPrint, Bot, Syringe, Wallet, Users, HeartPulse, Gift, Star } from "lucide-react";
+import { ChevronLeft, ChevronRight, PawPrint, Bot, Syringe, Wallet, Users, HeartPulse, Gift } from "lucide-react";
 import family from "@/assets/slide-family.jpg";
 import vet from "@/assets/slide-vet.jpg";
 import shop from "@/assets/slide-shop.jpg";
@@ -104,17 +105,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="mx-auto mt-14 grid max-w-6xl items-center gap-8 rounded-3xl bg-secondary p-8 md:grid-cols-2 md:p-12">
-        <div>
-          <h2 className="font-display text-3xl text-secondary-foreground md:text-4xl">Plans starting at just ₹99/month</h2>
-          <p className="mt-3 text-secondary-foreground/80">From solo pet parents to busy multi-pet homes — there's a plan with your pet's name on it.</p>
-          <Link to="/plans" className="mt-6 inline-block rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground">Compare plans</Link>
-        </div>
-        <div className="flex items-center gap-2 text-secondary-foreground">
-          {[...Array(5)].map((_, k) => <Star key={k} className="h-6 w-6 fill-accent text-accent" />)}
-          <span className="ml-2 font-semibold">Loved by 10,000+ pet parents</span>
-        </div>
-      </section>
+      <Plans />
 
     </main>
   );

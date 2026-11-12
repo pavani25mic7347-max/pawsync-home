@@ -26,7 +26,8 @@ import {
 import { SiteFooter } from "@/components/SiteFooter";
 
 const items = [
-  { title: "Home / Dashboard", to: "/dashboard", icon: House },
+  { title: "Home", to: "/", icon: House },
+  { title: "Dashboard", to: "/dashboard", icon: House },
   { title: "My Pets", to: "/pets", icon: Dog },
   { title: "Health & Vaccinations", to: "/health", icon: Heart },
   { title: "Daily Care", to: "/daily-care", icon: Calendar },

@@ -27,10 +27,10 @@ const plans: Plan[] = [
     features: ["Up to 5 pet profiles", "Access for up to 4 family members", "Shared pet-care schedules", "Shared vaccination and medicine reminders", "100 AI assistant queries per month", "Advanced expense analytics", "Priority customer support", "Premium partner offers"] },
 ];
 
-function Plans() {
+export function Plans() {
   const [yearly, setYearly] = useState(false);
   return (
-    <main className="min-h-screen bg-background px-4 py-16">
+    <div id="plans" className="bg-background px-4 py-16">
       <header className="mx-auto max-w-2xl text-center">
         <div className="inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-1 text-sm font-semibold text-secondary-foreground">
           <PawPrint className="h-4 w-4" /> PawSync
@@ -77,6 +77,6 @@ function Plans() {
           </article>
         ))}
       </section>
-    </main>
+    </div>
   );
 }
